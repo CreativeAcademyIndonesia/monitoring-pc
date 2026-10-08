@@ -25,27 +25,30 @@ if %errorLevel% neq 0 (
     exit /b 1
 )
 
-:: 3. Menginstall PM2
+:: 3. Pindah ke direktori tempat script ini berada
+cd /d "%~dp0"
+
+:: 4. Menginstall PM2
 echo.
 echo [INFO] Menginstall PM2 secara global (jika belum ada)...
 call npm install -g pm2
 
-:: 4. Menginstall dependencies lokal (jika ada)
+:: 5. Menginstall dependencies lokal (jika ada)
 echo.
 echo [INFO] Menginstall dependensi proyek...
 call npm install
 
-:: 5. Menjalankan program menggunakan PM2
+:: 6. Menjalankan program menggunakan PM2
 echo.
 echo [INFO] Menjalankan Monitoring Agent...
-call pm2 start ecosystem.config.cjs
+call pm2 start "%~dp0ecosystem.config.cjs"
 
-:: 6. Menyimpan state PM2
+:: 7. Menyimpan state PM2
 echo.
 echo [INFO] Menyimpan konfigurasi PM2...
 call pm2 save
 
-:: 7. Menambahkan auto-start ke Windows Task Scheduler (Agar otomatis jalan saat PC restart tanpa perlu login)
+:: 8. Menambahkan auto-start ke Windows Task Scheduler (Agar otomatis jalan saat PC restart tanpa perlu login)
 echo.
 echo [INFO] Menambahkan ke Windows Task Scheduler (Auto-start saat boot)...
 set PROJECT_DIR=%~dp0
