@@ -1,6 +1,6 @@
-import test from "node:test";
-import assert from "node:assert";
-import { metricsService } from "../src/services/metrics.service.js";
+const test = require("node:test");
+const assert = require("node:assert");
+const { metricsService } = require("../src/services/metrics.service.js");
 
 test("Metrics Service", async (t) => {
 

@@ -1,7 +1,7 @@
-import test from "node:test";
-import assert from "node:assert";
-import child_process from "node:child_process";
-import { collectMetrics } from "../src/collectors/windows.collector.js";
+const test = require("node:test");
+const assert = require("node:assert");
+const child_process = require("child_process");
+const { collectMetrics } = require("../src/collectors/windows.collector.js");
 
 test("Windows Collector", async (t) => {
   await t.test("parses valid JSON from powershell", async (t) => {

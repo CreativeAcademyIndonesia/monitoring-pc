@@ -1,7 +1,7 @@
-import { collectMetrics } from "../collectors/windows.collector.js";
-import { historyService } from "./history.service.js";
-import { config } from "../config/index.js";
-import { logger } from "../utils/logger.js";
+const { collectMetrics } = require('../collectors/windows.collector.js');
+const { historyService } = require('./history.service.js');
+const { config } = require('../config/index.js');
+const { logger } = require('../utils/logger.js');
 
 class MetricsService {
   constructor() {
@@ -38,11 +38,10 @@ class MetricsService {
       this.currentMetrics = data;
       this.lastCollectedAt = Date.now();
       
-      // Save to history
       await historyService.append(data);
       
     } catch (err) {
-      logger.error("Metrics collection failed:", err.message);
+      logger.error('Metrics collection failed:', err.message);
     } finally {
       this.isRunning = false;
       this.scheduleNext();
@@ -51,21 +50,22 @@ class MetricsService {
 
   getCurrentMetrics() {
     if (!this.currentMetrics) {
-      return { error: "Metrics not available yet", status: 503 };
+      return { error: 'Metrics not available yet', status: 503 };
     }
 
     const age = Date.now() - this.lastCollectedAt;
     if (age > config.metricsStaleAfterMs) {
-      return { error: "Metrics are stale", status: 503 };
+      return { error: 'Metrics are stale', status: 503 };
     }
 
     const data = {
       ...this.currentMetrics,
-      status: "running"
+      status: 'running'
     };
 
     return { data };
   }
 }
 
-export const metricsService = new MetricsService();
+const metricsService = new MetricsService();
+module.exports = { metricsService };

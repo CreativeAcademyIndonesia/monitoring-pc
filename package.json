@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "Windows Monitoring REST API compatible with Proxmox VE",
   "main": "server.js",
-  "type": "module",
   "scripts": {
     "start": "node server.js",
     "test": "node --test tests/*.test.js"
@@ -18,7 +17,7 @@
   "author": "",
   "license": "ISC",
   "engines": {
-    "node": ">=18.0.0"
+    "node": ">=13.0.0"
   },
   "devDependencies": {
     "@types/node": "^26.6.4",

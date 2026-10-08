@@ -1,8 +1,8 @@
-import test from "node:test";
-import assert from "node:assert";
-import fs from "node:fs";
-import path from "node:path";
-import { historyService } from "../src/services/history.service.js";
+const test = require("node:test");
+const assert = require("node:assert");
+const fs = require("fs");
+const path = require("path");
+const { historyService } = require("../src/services/history.service.js");
 
 const testDataDir = path.join(process.cwd(), "data");
 const testFile = path.join(testDataDir, "history.jsonl");

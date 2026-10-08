@@ -1,4 +1,4 @@
-import { config } from "../config/index.js";
+const { config } = require('../config/index.js');
 
 const levels = {
   debug: 0,
@@ -9,17 +9,19 @@ const levels = {
 
 const currentLevel = levels[config.logLevel] !== undefined ? levels[config.logLevel] : 1;
 
-export const logger = {
+const logger = {
   debug: (...args) => {
-    if (currentLevel <= 0) console.log(new Date().toISOString(), "[DEBUG]", ...args);
+    if (currentLevel <= 0) console.log(new Date().toISOString(), '[DEBUG]', ...args);
   },
   info: (...args) => {
-    if (currentLevel <= 1) console.log(new Date().toISOString(), "[INFO]", ...args);
+    if (currentLevel <= 1) console.log(new Date().toISOString(), '[INFO]', ...args);
   },
   warn: (...args) => {
-    if (currentLevel <= 2) console.warn(new Date().toISOString(), "[WARN]", ...args);
+    if (currentLevel <= 2) console.warn(new Date().toISOString(), '[WARN]', ...args);
   },
   error: (...args) => {
-    if (currentLevel <= 3) console.error(new Date().toISOString(), "[ERROR]", ...args);
+    if (currentLevel <= 3) console.error(new Date().toISOString(), '[ERROR]', ...args);
   }
 };
+
+module.exports = { logger };

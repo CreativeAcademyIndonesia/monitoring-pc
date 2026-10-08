@@ -1,7 +1,7 @@
-import test from "node:test";
-import assert from "node:assert";
-import { authMiddleware } from "../src/middleware/auth.js";
-import { config } from "../src/config/index.js";
+const test = require("node:test");
+const assert = require("node:assert");
+const { authMiddleware } = require("../src/middleware/auth.js");
+const { config } = require("../src/config/index.js");
 
 test("Authentication Middleware", async (t) => {
   // Set a test token
