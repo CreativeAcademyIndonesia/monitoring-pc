@@ -100,8 +100,8 @@ async function collectMetrics() {
       console.warn('PowerShell stderr:', result.stderr.trim());
     }
 
-    // Ambil baris yang berupa JSON saja (abaikan noise/BOM)
-    const out = result.stdout.replace(/^\uFEFF/, '').trim();
+    // Ambil JSON saja (abaikan BOM) dan hapus line-break hasil wrap console PS 2.0
+    const out = result.stdout.replace(/^\uFEFF/, '').replace(/[\r\n]+/g, '').trim();
     const start = out.indexOf('{');
     const end = out.lastIndexOf('}');
     if (start === -1 || end === -1) {

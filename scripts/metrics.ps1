@@ -70,7 +70,9 @@ try {
   $compName = $env:COMPUTERNAME
 
   $json = "{`"name`":`"$compName`",`"cpu`":$cpuStr,`"cpus`":$totalCpus,`"mem`":$memUsed,`"maxmem`":$memTotal,`"disk`":$totalDiskUsed,`"maxdisk`":$totalDiskSize,`"uptime`":$uptimeSeconds,`"diskinfo`":[$disksStr]}"
-  Write-Output $json
+  # JANGAN pakai Write-Output: PowerShell 2.0 (Win 7) memotong/wrap output di 80 kolom
+  [Console]::Out.Write($json)
+  [Console]::Out.Flush()
   exit 0
 } catch {
   [Console]::Error.WriteLine($_.Exception.Message)
