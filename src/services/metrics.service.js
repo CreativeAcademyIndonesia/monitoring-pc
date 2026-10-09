@@ -13,7 +13,8 @@ class MetricsService {
 
   async start() {
     await historyService.load();
-    this.scheduleNext();
+    // Ambil metric langsung saat start, lalu jadwalkan sesuai interval
+    this.collect();
   }
 
   stop() {

@@ -28,8 +28,9 @@ const config = {
   port: parseInt(process.env.PORT || '9001', 10),
   host: process.env.HOST || '0.0.0.0',
   monitorToken: process.env.MONITOR_TOKEN || 'monitoring-token-332100185',
-  metricsIntervalMs: parseInt(process.env.METRICS_INTERVAL_MS || '60000', 10),
-  metricsStaleAfterMs: parseInt(process.env.METRICS_STALE_AFTER_MS || '120000', 10),
+  // Default polling 1 jam (3600000 ms). Stale harus > interval (default 2 jam)
+  metricsIntervalMs: parseInt(process.env.METRICS_INTERVAL_MS || '3600000', 10),
+  metricsStaleAfterMs: parseInt(process.env.METRICS_STALE_AFTER_MS || '7200000', 10),
   historyRetentionHours: parseInt(process.env.HISTORY_RETENTION_HOURS || '24', 10),
   tlsEnabled: process.env.TLS_ENABLED === 'true',
   tlsCertPath: process.env.TLS_CERT_PATH || 'certs/server.crt',
